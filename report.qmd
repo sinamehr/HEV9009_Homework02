@@ -1,0 +1,61 @@
+---
+title: "A reproducible AI-adoption teaching example"
+author: "Sina"
+date: last-modified
+bibliography: resources/references.bib
+csl: resources/author_date.csl
+---
+
+## Background
+
+Paper 003 studies firm-level AI measurement by organizing indicators into technology, business-purpose, and acquisition dimensions. The larger design builds on research connecting AI use and firm productivity [@czarnitzki2023]. This coursework subproject demonstrates provenance and reproducible reporting rather than making substantive claims; transparent computational records are central to that goal [@sandve2013].
+
+Related studies distinguish AI technologies, uses, and sourcing strategies in German and French firms [@rammer2022; @calvino2026].
+
+The included dataset is fake and contains no actual research data or firm observations. Its 10 teaching-example rows represent only a small part of the codebook: each row describes a variable associated with an IKT, CIS, REGN, or VoF source file. It must not be interpreted as the complete codebook or an analytical sample.
+
+## Variable sample
+
+The following table reproduces all 10 rows in `data/variable_list_sample.csv` using shorter display columns. The CSV also records variable number, status, and length.
+
+| Dataset | Variable | Description | Type |
+|------------------|------------------|------------------|------------------|
+| W20_0556_IKT_AVIDENT_2022 | DIGDIR_15 | Resource-intensive to get data because relevant data/source is hard. | char |
+| W20_0556_IKT_AVIDENT_2022 | DI37 | Digital Intensity Index component: enterprise uses at least two forms of social media. | num |
+| W20_0556_CIS_2022 | INPDTWV4 | Product innovations copied or modified from others' goods or services. | num |
+| W20_0556_CIS_2022 | INPSSU_C | COVID-19-driven innovations in accounting or administrative purposes. | num |
+| W20_0556_CIS_2022 | INTBPR | Acquired an IPR licence from private firms or individual right holders. | Not specified |
+| 5_VOF_2024 | NAERING_DATO | Validity date of the industry code. | num |
+| 5_VOF_2025 | NAERING1 | Primary industry code under the applicable standard. | num |
+| W20_0556_IKT_AVIDENT_2023 | ITSPRCR2 | Enterprise recruited or tried to recruit ICT specialists. | num |
+| W20_0556_IKT_AVIDENT_2023 | DI43 | Fastest fixed-line internet connection is at least 30 Mbit/s. | num |
+| 1_CIS_2024 | FIPOTHEU | Public financial support from other EU authorities or institutions. | num |
+
+## Visualization
+
+The included R script, `R/0103030409_generate_mmc_v01_sunburst_weight_graphs.r`, generates the non-faceted 2021 M1 sunburst shown below. The graph illustrates aggregate fitted AI-adoption weights across the Technology, Purpose, and Acquisition hierarchy and contains no firm-level observations. Running the script requires supporting inputs and shared functions from the parent project; the included PDF preserves its output for this self-contained report.
+
+```{=html}
+<figure id="fig-production-sunburst">
+  <object data="figures/sun_m1_h_y21.pdf" type="application/pdf" width="100%" height="720">
+    <p><a href="figures/sun_m1_h_y21.pdf">Open the sunburst PDF.</a></p>
+  </object>
+  <figcaption>M1 sunburst for the annual-harmonised 2021 fit.</figcaption>
+</figure>
+```
+
+## Graphical grammar
+
+The visualization uses a consistent graphical grammar to make the model hierarchy legible:
+
+- **Structure:** a sunburst places **AI Adoption** at the center, dimensions in the inner ring, and indicators in the outer ring.
+- **Order:** sectors begin at 12 o'clock and proceed clockwise through Technology, Purpose, and Acquisition.
+- **Color:** Technology uses blue (`#0072B2`), Purpose orange (`#D55E00`), and Acquisition green (`#009E73`); indicator shades remain within the corresponding dimension hue.
+- **Typography and boundaries:** Arial labels, restrained gray guides, and white internal borders separate the hierarchy without adding visual clutter.
+- **Output:** the figure is exported as a Cairo PDF, with a corresponding text caption in the parent workflow.
+
+## Reproducibility scope
+
+The Quarto report renders from the included fake metadata, bibliography, citation style, and graph. The R script records how the graph is generated, but regenerating it requires the parent project's shared graph helper, configuration, and aggregate fitted-weight inputs.
+
+## References

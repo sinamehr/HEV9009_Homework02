@@ -1,0 +1,17 @@
+# Quarto render products and caches
+*.html
+/.quarto/
+/*_cache/
+/*_files/
+
+# Local R session files
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Operating-system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+**/*.quarto_ipynb
